@@ -11,7 +11,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Build Pi-Gen image
-      uses: usimd/pi-gen-action@v2
+      uses: usimd/pi-gen-action@v1
       with:
         # Define the image name (optional, default is 'RPi-Distro')
         IMG_NAME: MyCustomPiImage
