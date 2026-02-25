@@ -1,0 +1,28 @@
+name: Build Raspberry Pi Image
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Build Pi-Gen image
+      uses: usimd/pi-gen-action@v2
+      with:
+        # Define the image name (optional, default is 'RPi-Distro')
+        IMG_NAME: MyCustomPiImage
+        # Define the target release (e.g., 'bookworm')
+        RELEASE: bookworm
+        # Add any other configuration variables you need
+        # e.g. WPA_ESSID, WPA_PASSWORD, ENABLE_SSH, etc.
+        # Check the action's documentation for all available inputs
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: raspberry-pi-image
+        path: deploy/*.img # or deploy/*.zip, depending on your config
